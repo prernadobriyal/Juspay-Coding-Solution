@@ -1,0 +1,22 @@
+def largestCycleSum(a):
+    cyclesum=[]
+    for i in range(0,len(a),1):
+        templist=[]
+        j,x=i,0
+        while(a[j]<len(a) and a[j]!=i and a[j]!=-1 and not(j in templist)):
+            templist.append(j)
+            x+=j
+            j=a[j]
+            if(a[j]==i):
+                x+=j
+                break
+        if(j<len(a) and i==a[j]):
+            cyclesum.append(x)
+    if len(cyclesum)==0:
+        return -1
+    return max(cyclesum)
+for _ in range(int(input())):
+    n=int(input())
+    a=list(map(int,input().split()))
+    res=largestCycleSum(a)
+    print(res)
